@@ -2,7 +2,7 @@
   "name": "angular-leaflet",
   "version": "0.0.1",
   "authors": [
-    "Óscar Belmonte Fernández <oscar.belmonte@uji.es>"
+    "Birhane Guesh <al349159@uji.es>"
   ],
   "description": "Example with Angular, Leaflet for create marks.",
   "main": "index.index",
