@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="demoapp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/leaflet.draw/dist/leaflet.draw.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js"></script>
+    <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src="bower_components/leaflet.draw/dist/leaflet.draw.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="bower_components/angular-moment/angular-moment.min.js"></script>-->
+    <title>Geo-TODO</title>
+</head>
+
+<body ng-controller="TheController">
+<div class="container">
+    <h1>A simple Geo-TODO example</h1>
+    <leaflet center="castellon" markers="markers" event-broadcast="events" width="100%" height="480px"></leaflet>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+        <h2>TODO List</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr><td>Message</td><td>Due date</td></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="marker in markers" ng-mouseover="showInfo(marker._id)">
+                <td>{{marker.message}}</td>
+                <td>{{marker.dueDate | date: "dd/MM/yyyy (hh:mm)"}}</td>
+                <!--<td><button ng-click="showInfo(marker._id)" type="button" class="btn btn-info">Info</button></td>-->
+                <td><button ng-click="removeMark(marker._id)" type="button" class="btn btn-danger">Remove</button></td>
+                <td><button ng-click="update(marker._id)" type="button" class="btn btn-info">update</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Detail</h2>
+
+        <div class="help-block"><label >Message:</label> <input class="text-info" type="text" ng-model="currentMarker.message"></div>
+
+        <div class="help-block"><label> Due date: </label><input type="datetime-local" datetime="yyyy-MM-dd HH:mm:ss" ng-model="currentMarker.dueDate"></div>
+
+        <div class="help-block"><label>Address:</label> {{currentMarker.display_name}}</div>
+
+        <div class="help-block"><label>Latitude:</label> {{currentMarker.lat}}</div>
+
+        <div class="help-block"><label>Longitude: </label>{{currentMarker.lng}}</div>
+    </div>
+    <div class="col-md-2">
+        <h3>Filter by date</h3>
+        <div class="help-block"><input type="datetime-local" ng-model="currentMarker.dueDate"></div>
+
+    </div>
+</div>
+</div>
+<script src="js/my-marks.js"></script>
+</body>
+</html>
