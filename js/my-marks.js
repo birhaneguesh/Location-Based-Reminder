@@ -48,9 +48,7 @@ app.controller("TheController", [ "$scope", "$http", function($scope, $http) {
     };
 
     $scope.removeMark = function (index) {
-        console.log(index);
-        //console.log($scope.markers[index]);
-
+       console.log(index);        
        $http.delete('/catalog/' + index).success(function(response) {
             console.log("the delete request was done");
             var result =response;
@@ -67,10 +65,6 @@ app.controller("TheController", [ "$scope", "$http", function($scope, $http) {
     }
 
     $scope.update = function(index) {
-
-        //console.log(index);
-        //console.log($scope.currentMarker.message);
-
         $http.put('/catalog/'+ $scope.currentMarker._id , $scope.currentMarker).success(function(response) {
             var result= response;
             console.log(result);
@@ -116,7 +110,6 @@ app.controller("TheController", [ "$scope", "$http", function($scope, $http) {
         };
 
         $http.post('/catalog', marker).success(function(response) {
-            //console.log(marker.message);
             console.log("I send post request");
             updateCurrentMarker(marker);
             refresh();
